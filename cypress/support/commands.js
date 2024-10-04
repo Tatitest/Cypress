@@ -1,7 +1,7 @@
 // import { loginElements as login } from '../pages/loginPage';
 import SignInPage from '../pages/SignInPage';
-import GoodsList from '../pages/goodsList';
-import { items as goodsText } from '../pages/goodsList';
+import "@4tw/cypress-drag-drop"
+import 'cypress-iframe';
 
 // ***********************************************
 // This example commands.js shows you how to
@@ -37,3 +37,27 @@ Cypress.Commands.add('login', (email, password) => {
         .fillPassword(password)
         .submit();
 })
+
+Cypress.Commands.add('clickOnListElement', (value) => {
+    cy.contains(value)
+        .parent()
+        .click()
+})
+
+Cypress.Commands.add('scrollToElement', (value) => {
+    cy.contains(value).scrollIntoView()
+        .should('be.visible')
+})
+
+Cypress.Commands.add('dragAndDropElements', (val1, val2) => {
+    cy.get(val1).drag(val2, {force: true})
+    .then((success) => {
+        assert.isTrue(success)
+    })
+})
+
+// Cypress.on('uncaught:exception', (err, runnable) => {
+//     // returning false here prevents Cypress from
+//     // failing the test
+//     return false
+// })

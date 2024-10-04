@@ -1,6 +1,8 @@
 const { defineConfig } = require('cypress');
 
 module.exports = defineConfig({
+  viewportWidth: 1280,
+  viewportHeight: 720,
   reporter: 'cypress-mochawesome-reporter',
   reporterOptions: {
     charts: true,
@@ -13,10 +15,6 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       require('cypress-mochawesome-reporter/plugin')(on);
     },
-    baseUrl: "https://www.saucedemo.com/",
-    specPattern: "cypress/e2e/**/*.{cy,spec}.{js,ts}",
-    watchForFileChanges: false,
-    chromeWebSecurity: false,
-    blockHosts: ["https://events.backtrace.io"],
+    baseUrl: "https://demoqa.com/",
   },
 });
